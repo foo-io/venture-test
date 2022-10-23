@@ -7,10 +7,10 @@
         </div>
         <div class="block__info">
           <div class="block__value">
-            {{ item.properties.products.name }}
+            {{ item.properties.products.value }}
           </div>
           <div class="block__description">
-            {{ item.properties.products.stack }}
+            {{ item.properties.products.description }}
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
           {{ formatPrice(item.properties.earning.value) }}
         </div>
         <div class="block__description">
-          {{ item.properties.earning.status }}
+          {{ item.properties.earning.description }}
         </div>
       </div>
     </td>
@@ -31,14 +31,14 @@
           {{ formatPrice(item.properties.comission.value) }}
         </div>
         <div class="block__description">
-          {{ item.properties.comission.status }}
+          {{ item.properties.comission.description }}
         </div>
       </div>
     </td>
     <td>
       <div class="block__info">
         <div class="block__value">
-          {{ item.properties.company.name }}
+          {{ item.properties.company.value }}
         </div>
         <div class="block__description">
           {{ item.properties.company.description }}
@@ -87,16 +87,12 @@
       </div>
     </td>
   </tr>
-  <div class="modal" v-if="isModalActive" v-click-outside="hideModal">
-    <pre>
-{{ item }}
-    </pre>
-  </div>
-  <div class="overflow-mask" v-if="isModalActive"></div>
+  <VModal :item="item" :isModalActive="isModalActive" @hide-modal="hideModal"></VModal>
 </template>
 
 <script>
 import StarRating from 'vue-star-rating'
+import VModal from './v-modal.vue'
 
 export default {
   props: {
@@ -118,17 +114,17 @@ export default {
       this.$emit('duplicateTask', this.$props.item.id)
       this.closeDropdown()
     },
-    showModal: function() {
-      this.isModalActive = true;
-    },
-    hideModal: function() {
-      this.isModalActive = false;
-    },
     closeDropdown: function () {
       this.isDropdownActive = false
     },
     toggleDropdown: function (idx) {
       this.isDropdownActive = !this.isDropdownActive
+    },
+    showModal: function() {
+      this.isModalActive = true;
+    },
+    hideModal: function() {
+      this.isModalActive = false;
     },
     formatPrice: function (value) {
       if (typeof value !== "number") return value;
@@ -144,40 +140,23 @@ export default {
   },
   components: {
     StarRating,
-  },
+    VModal
+},
   
 }
 </script>
 
 <style>
-.overflow-mask {
-  position: fixed;
-  z-index: 9;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.modal {
-  padding: 2rem;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 550px;
-  height: 400px;
-  overflow-y: auto;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(67, 73, 97, 0.1);
-  box-shadow: 0px 5px 6px rgba(67, 73, 97, 0.08);
-  border-radius: 12px;
-}
 .product {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+.product:hover .block__value {
+  color: #3699FF;
+}
+.product .block__value {
+  transition: color .2s ease;
 }
 .product__photo {
   background: #F3F6F9;

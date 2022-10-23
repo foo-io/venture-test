@@ -2,18 +2,33 @@
   <table class="table">
     <thead class="thead">
       <tr>
-        <th class="active">Products</th>
-        <th>Earnings</th>
-        <th>Comission</th>
-        <th>Company</th>
-        <th>Rating</th>
+        <th @click="sort('products')" :class="{active: sortName === 'products'}">
+          Products
+          <span v-if="sortName === 'products'">{{ sortDir === 'asc' ? '&darr;' : '&uarr;' }}</span>
+        </th>
+        <th @click="sort('earning')" :class="{active: sortName === 'earning'}">
+          Earnings
+          <span v-if="sortName === 'earning'">{{ sortDir === 'asc' ? '&darr;' : '&uarr;' }}</span>
+        </th>
+        <th @click="sort('comission')" :class="{active: sortName === 'comission'}">
+          Comission
+          <span v-if="sortName === 'comission'">{{ sortDir === 'asc' ? '&darr;' : '&uarr;' }}</span>
+        </th>
+        <th @click="sort('company')" :class="{active: sortName === 'company'}">
+          Company
+          <span v-if="sortName === 'company'">{{ sortDir === 'asc' ? '&darr;' : '&uarr;' }}</span>
+        </th>
+        <th @click="sort('rating')" :class="{active: sortName === 'rating'}">
+          Rating
+          <span v-if="sortName === 'rating'">{{ sortDir === 'asc' ? '&darr;' : '&uarr;' }}</span>
+        </th>
         <th></th>
       </tr>
     </thead>
 
     <tbody class="tbody">
       <VItem 
-        v-for="item in users"
+        v-for="item in sortedUsers"
         :key="item.id" 
         :item="item" 
         @remove-task="removeTask" 
@@ -32,6 +47,8 @@ export default {
   data() {
     return {
       users: [],
+      sortName: 'products',
+      sortDir: 'asc'
     }
   },
   async mounted() {
@@ -39,7 +56,26 @@ export default {
     const json = await res.json();
     this.users = json
   },
+  computed: {
+    sortedUsers: function() {
+      return this.users.sort((a, b) => {
+        let mod = 1;
+
+        if (this.sortDir === 'desc') mod = -1;
+        if (a.properties[this.sortName].value < b.properties[this.sortName].value) return -1 * mod;
+        if (a.properties[this.sortName].value > b.properties[this.sortName].value) return 1 * mod;
+        
+        return 0;
+      });
+    }
+  },
   methods: {
+    sort: function (param) {
+      if (param === this.sortName) {
+        this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc'
+      }
+      this.sortName = param;
+    },
     duplicateTask: function (idx) {
       let duplicateId = this.users.findIndex(x => x.id === idx);
       let duplicateItem = {}
@@ -57,7 +93,7 @@ export default {
   },
   components: {
     VItem
-}
+  }
 }
 </script>
 
@@ -79,6 +115,7 @@ th {
   line-height: 18px;
   letter-spacing: 0.03em;
   color: #B5B5C3;
+  cursor: pointer;
 }
 th.active {
   color: #464E5F;

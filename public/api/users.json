@@ -3,20 +3,20 @@
     "id": "699861e9-0084-456c-a3db-04cef711cc64",
     "properties": {
       "products": {
-        "name": "Brad Simmons",
-        "stack": "HTML, JS, ReactJS",
+        "value": "Brad Simmons",
+        "description": "HTML, JS, ReactJS",
         "photo": "/avatars/person-brad.svg"
       },
       "earning": {
         "value": 8000000,
-        "status": "In Proccess"
+        "description": "In Proccess"
       },
       "comission": {
         "value": 520,
-        "status": "Paid"
+        "description": "Paid"
       },
       "company": {
-        "name": "Intertico",
+        "value": "Intertico",
         "description": "Web, UI/UX Design"
       },
       "rating": {
@@ -29,20 +29,20 @@
     "id": "c4ba3456-b751-45cd-b14c-51369588440e",
     "properties": {
       "products": {
-        "name": "Jessie Clarcson",
-        "stack": "C#, ASP.NET, MS SQL",
+        "value": "Jessie Clarcson",
+        "description": "C#, ASP.NET, MS SQL",
         "photo": "/avatars/person-jessie.svg"
       },
       "earning": {
         "value": 23000000,
-        "status": "Pending"
+        "description": "Pending"
       },
       "comission": {
         "value": 1600,
-        "status": "Rejected"
+        "description": "Rejected"
       },
       "company": {
-        "name": "Agoda",
+        "value": "Agoda",
         "description": "Houses & Hotels"
       },
       "rating": {
@@ -55,20 +55,20 @@
     "id": "cf122a23-3268-421f-bde4-7cbdba3e3224",
     "properties": {
       "products": {
-        "name": "Lebron Wayde",
-        "stack": "PHP, Laravel, VueJS",
+        "value": "Lebron Wayde",
+        "description": "PHP, Laravel, VueJS",
         "photo": "/avatars/person-lebron.svg"
       },
       "earning": {
         "value": 34000000,
-        "status": "Paid"
+        "description": "Paid"
       },
       "comission": {
         "value": 6700,
-        "status": "Paid"
+        "description": "Paid"
       },
       "company": {
-        "name": "RoadGee",
+        "value": "RoadGee",
         "description": "Transportation"
       },
       "rating": {
@@ -81,20 +81,20 @@
     "id": "dcf26f7e-33e0-4044-ba2c-c689fae47f79",
     "properties": {
       "products": {
-        "name": "Natali Trump",
-        "stack": "Python, PostgreSQL, ReactJS",
+        "value": "Natali Trump",
+        "description": "Python, PostgreSQL, ReactJS",
         "photo": "/avatars/person-natali.svg"
       },
       "earning": {
         "value": 2600000,
-        "status": "Paid"
+        "description": "Paid"
       },
       "comission": {
         "value": 14000,
-        "status": "Pending"
+        "description": "Pending"
       },
       "company": {
-        "name": "The Hill",
+        "value": "The Hill",
         "description": "Insurance"
       },
       "rating": {

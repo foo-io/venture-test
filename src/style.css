@@ -79,6 +79,7 @@ button:focus-visible {
   color: #FFFFFF;
   background: #EEE;
   border-radius: 6px;
+  cursor: pointer;
 }
 .button__color-red {
   background: #F64E60;
